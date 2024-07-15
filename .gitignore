@@ -1,0 +1,9 @@
+# IDE
+.idea/
+
+# Gradle
+.gradle/
+build/
+
+# Tests
+lets-plot-images/
