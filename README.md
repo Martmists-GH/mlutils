@@ -14,7 +14,7 @@ It also includes some code for compatibility between projects:
 - [viktor](https://github.com/JetBrains-Research/viktor)
   - This provides the primary data type used in this repo, `F64Array`.
   - Support was added to read/write `F64Array`s to/from CSV files.
-- [Exposed](https://github.com/JetBrains/Exposed) and [pgGvector](https://github.com/pgvector/pgvector)]
+- [Exposed](https://github.com/JetBrains/Exposed) and [pgGvector](https://github.com/pgvector/pgvector)
   - Supports storing `F64Array`s in exposed tables using the `PGvector` type, as well as implementing a DSL for all operations.
 - [LangChain4J](https://github.com/langchain4j/langchain4j)
   - Supports converting `F64Array`s to/from LangChain4J's `Embedding` type.
