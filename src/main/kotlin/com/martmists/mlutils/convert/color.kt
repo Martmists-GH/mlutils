@@ -1,7 +1,7 @@
 package com.martmists.mlutils.convert
 
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
 
 
 /**

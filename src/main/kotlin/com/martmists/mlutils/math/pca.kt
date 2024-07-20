@@ -1,9 +1,7 @@
 package com.martmists.mlutils.math
 
-import com.martmists.mlutils.compat.jvm.ofRows
-import com.martmists.mlutils.compat.jvm.rows
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
 import kotlin.math.sqrt
 
 /**
@@ -23,7 +21,7 @@ fun pca(k: Int, points: List<F64FlatArray>): List<F64FlatArray> {
     val covMatrix = asMatrix.transpose().matmul(asMatrix) / (points.size - 1.0)
     val (eigenValues, eigenVectors) = covMatrix.eigen()
     val values = eigenValues.toDoubleArray()
-    val vectors = eigenVectors.rows()
+    val vectors = eigenVectors.along(0).toList()
 
     val sorted = values.mapIndexed { index, d -> index to d }.sortedByDescending(Pair<Int, Double>::second).map(Pair<Int, Double>::first)
     val sortedVectors = sorted.map(vectors::get)
@@ -31,5 +29,5 @@ fun pca(k: Int, points: List<F64FlatArray>): List<F64FlatArray> {
     val topEigen = sortedVectors.take(k)
     val newMat = F64Array.ofRows(topEigen)
 
-    return normalized.matmul(newMat.transpose()).rows()
+    return normalized.matmul(newMat.transpose()).along(0).map { it.flatten() }.toList()
 }

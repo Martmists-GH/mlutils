@@ -1,8 +1,9 @@
 package com.martmists.mlutils.compat.langchain
 
+import com.martmists.mlutils.compat.jvm.toFloatArray
 import dev.langchain4j.data.embedding.Embedding
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
 
 /**
  * Converts an [Embedding] to an [F64FlatArray].
@@ -16,6 +17,6 @@ fun Embedding.toF64Array(): F64FlatArray {
  * Converts an [F64FlatArray] to an [Embedding].
  */
 fun F64FlatArray.toEmbedding(): Embedding {
-    val arr = this.toArray().map { it.toFloat() }.toFloatArray()
+    val arr = this.toFloatArray()
     return Embedding.from(arr)
 }

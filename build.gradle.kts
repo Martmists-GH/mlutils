@@ -6,19 +6,16 @@ group = "com.martmists"
 version = "0.1.0"
 
 repositories {
-    maven("https://maven.martmists.com/snapshots")
+    maven("https://maven.martmists.com/releases")
     mavenCentral()
 }
 
 dependencies {
     // Vector implementation
-    // IMPORTANT: This is a custom build of viktor, hosted on my own Maven repository. See the `repositories` block for the URL.
-    // The only change is that this PR has been merged, everything else is identical:
-    // https://github.com/JetBrains-Research/viktor/pull/52
-    api("org.jetbrains.bio:viktor:1.2.0")
+    api("com.martmists.ndarray-simd:ndarray-simd:1.0.6")
 
     // Compat: Exposed+PGVector
-    compileOnly("com.pgvector:pgvector:0.1.5")
+    compileOnly("com.pgvector:pgvector:0.1.6")
     compileOnly("org.jetbrains.exposed:exposed-core:0.52.0")
 
     // Compat: Image Formats

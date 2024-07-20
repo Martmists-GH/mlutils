@@ -1,6 +1,6 @@
 package com.martmists.mlutils.math
 
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64FlatArray
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 

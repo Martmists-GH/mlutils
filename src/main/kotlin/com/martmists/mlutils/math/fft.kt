@@ -1,8 +1,8 @@
 package com.martmists.mlutils.math
 
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
-import org.jetbrains.bio.viktor._I
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
+import com.martmists.ndarray.simd._I
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

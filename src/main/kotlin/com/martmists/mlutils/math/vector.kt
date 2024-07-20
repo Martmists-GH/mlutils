@@ -1,9 +1,7 @@
 package com.martmists.mlutils.math
 
-import com.martmists.mlutils.compat.jvm.diagonal
-import com.martmists.mlutils.compat.jvm.identity
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
 import kotlin.math.sqrt
 
 /**
@@ -23,15 +21,6 @@ fun F64Array.transpose(): F64Array {
         2 -> F64Array(shape[1], shape[0]) { i, j -> this[j, i] }
         else -> throw IllegalArgumentException("Only 1D and 2D arrays are supported")
     }
-}
-
-/**
- * Returns the diagonal of this [F64Array].
- */
-fun F64Array.diagonal(): F64FlatArray {
-    require(shape.size == 2) { "Only 2D arrays are supported" }
-    require(shape[0] == shape[1]) { "Only square matrices are supported" }
-    return F64Array(shape[0]) { i -> this[i, i] }.flatten()
 }
 
 /**
@@ -58,13 +47,16 @@ fun F64Array.eigen(): Pair<F64Array, F64Array> {
         val (q, r) = tmp.qr()
         tmp = r.matmul(q)
         total = total.matmul(q)
-        val offDiagonal = (tmp - F64Array.diagonal(tmp.diagonal())).norm()
+        val offDiagonal = (tmp - F64Array.diagonal(tmp.diagonal().toDoubleArray())).norm()
         if (offDiagonal < tolerance) {
             break
         }
     }
 
-    return tmp.diagonal() to total
+    val eigenvalues = tmp.diagonal()
+    val eigenvectors = total
+
+    return eigenvalues to eigenvectors
 }
 
 private fun F64Array.qr(): Pair<F64Array, F64Array> {
@@ -73,7 +65,7 @@ private fun F64Array.qr(): Pair<F64Array, F64Array> {
 
     for (i in 0 until shape[0] - 1) {
         val x = r.slice(i, shape[0], axis=0).view(i, axis=1)
-        val e = F64Array.full(shape[0] - i, 0.0)
+        val e = F64Array.zeros(intArrayOf(shape[0] - i))
         e[0] = x.norm()
         val v = (x - e).let { it / it.norm() }.flatten()
         val qi = F64Array.identity(shape[0])
@@ -90,17 +82,4 @@ private fun F64Array.qr(): Pair<F64Array, F64Array> {
     }
 
     return q to r
-}
-
-/**
- * Calculates the matrix multiplication of this [F64Array] and some [other] matrix.
- */
-fun F64Array.matmul(other: F64Array): F64Array {
-    require(shape.size == 2) { "Only 2D arrays are supported" }
-    require(other.shape.size == 2) { "Only 2D arrays are supported" }
-    require(shape[1] == other.shape[0]) { "Incompatible shapes: ${shape.contentToString()}, ${other.shape.contentToString()}" }
-
-    return F64Array(shape[0], other.shape[1]) { i, j ->
-        (0 until shape[1]).sumOf { this[i, it] * other[it, j] }
-    }
 }

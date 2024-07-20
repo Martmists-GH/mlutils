@@ -3,8 +3,8 @@ package com.martmists.mlutils.compat.exposed
 import com.martmists.mlutils.compat.jvm.of
 import com.martmists.mlutils.compat.jvm.toFloatArray
 import com.pgvector.PGvector
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
 import org.jetbrains.exposed.sql.ColumnType
 import java.sql.ResultSet
 

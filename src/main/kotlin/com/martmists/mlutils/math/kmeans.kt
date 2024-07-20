@@ -1,9 +1,9 @@
 package com.martmists.mlutils.math
 
-import org.jetbrains.bio.viktor.F64Array
-import org.jetbrains.bio.viktor.F64FlatArray
+import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64FlatArray
 
-typealias Cluster = List<F64FlatArray>
+    typealias Cluster = List<F64FlatArray>
 
 /**
  * Cluster the `points` into `k` clusters using K-means clustering.
@@ -38,7 +38,7 @@ fun clusterKMeans(k: Int, points: List<F64FlatArray>): Map<F64FlatArray, Cluster
             clusters[centroids.indexOf(closest)].add(p)
         }
 
-        val idealCentroids = clusters.map { (it.fold(F64Array.full(centroids[0].length, 0.0)) { acc, array -> acc + array } / it.size.toDouble()).flatten() }
+        val idealCentroids = clusters.map { (it.fold(F64Array.zeros(intArrayOf(centroids[0].length))) { acc, array -> acc + array } / it.size.toDouble()).flatten() }
         val closestCentroids = clusters.withIndex().map { (i, cluster) -> cluster.minByOrNull { it.l2Distance(idealCentroids[i]) } ?: points.random() }
 
         if (centroids.zip(closestCentroids).all { (a, b) -> a === b }) {

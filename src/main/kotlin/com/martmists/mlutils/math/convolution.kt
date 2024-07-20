@@ -1,6 +1,6 @@
 package com.martmists.mlutils.math
 
-import org.jetbrains.bio.viktor.F64Array
+import com.martmists.ndarray.simd.F64Array
 
 /**
  * Convolves this array with some [kernel].

@@ -4,7 +4,7 @@ import com.sksamuel.scrimage.ImmutableImage
 import com.sksamuel.scrimage.nio.JpegWriter
 import com.sksamuel.scrimage.nio.PngWriter
 import com.sksamuel.scrimage.webp.WebpWriter
-import org.jetbrains.bio.viktor.F64Array
+import com.martmists.ndarray.simd.F64Array
 import java.io.File
 
 /**
