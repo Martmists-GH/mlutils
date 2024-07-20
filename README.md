@@ -11,7 +11,7 @@ A collection of utilities I wrote for ML stuff!
 
 It also includes some code for compatibility between projects:
 
-- [viktor](https://github.com/JetBrains-Research/viktor)
+- [ndarray.simd](https://github.com/Martmists-GH/ndarray.simd)
   - This provides the primary data type used in this repo, `F64Array`.
   - Support was added to read/write `F64Array`s to/from CSV files.
 - [Exposed](https://github.com/JetBrains/Exposed) and [pgGvector](https://github.com/pgvector/pgvector)
