@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     // Vector implementation
-    api("com.martmists.ndarray-simd:ndarray-simd:1.0.6")
+    api("com.martmists.ndarray-simd:ndarray-simd:1.0.8")
 
     // Compat: Exposed+PGVector
     compileOnly("com.pgvector:pgvector:0.1.6")
