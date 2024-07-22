@@ -47,10 +47,10 @@ fun F64Array.toImage(file: File) {
             px = px.red((this[x, y, 0] * 255).toInt())
             px = px.green((this[x, y, 1] * 255).toInt())
             px = px.blue((this[x, y, 2] * 255).toInt())
-            if (shape[2] == 4) {
-                px = px.alpha((this[x, y, 3] * 255).toInt())
+            px = if (shape[2] == 4) {
+                px.alpha((this[x, y, 3] * 255).toInt())
             } else {
-                px = px.alpha(255)
+                px.alpha(255)
             }
             img.setPixel(px)
         }

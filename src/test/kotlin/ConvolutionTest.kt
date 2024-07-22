@@ -1,6 +1,5 @@
 import com.martmists.mlutils.compat.format.fromImage
 import com.martmists.mlutils.compat.format.toImage
-import com.martmists.mlutils.compat.jvm.ofRows
 import com.martmists.mlutils.math.convolve
 import com.martmists.ndarray.simd.F64Array
 import java.io.File

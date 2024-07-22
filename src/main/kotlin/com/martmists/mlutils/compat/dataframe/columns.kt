@@ -1,6 +1,5 @@
 package com.martmists.mlutils.compat.dataframe
 
-import com.martmists.mlutils.compat.jvm.of
 import com.martmists.ndarray.simd.F64Array
 import com.martmists.ndarray.simd.F64FlatArray
 import org.jetbrains.kotlinx.dataframe.DataColumn

@@ -1,6 +1,7 @@
 package com.martmists.mlutils.math
 
 import com.martmists.ndarray.simd.F64Array
+import com.martmists.ndarray.simd.F64Array.Companion.zeros
 import com.martmists.ndarray.simd.F64FlatArray
 
     typealias Cluster = List<F64FlatArray>
@@ -38,7 +39,7 @@ fun clusterKMeans(k: Int, points: List<F64FlatArray>): Map<F64FlatArray, Cluster
             clusters[centroids.indexOf(closest)].add(p)
         }
 
-        val idealCentroids = clusters.map { (it.fold(F64Array.zeros(intArrayOf(centroids[0].length))) { acc, array -> acc + array } / it.size.toDouble()).flatten() }
+        val idealCentroids = clusters.map { (it.fold(zeros(centroids[0].length)) { acc, array -> acc + array } / it.size.toDouble()).flatten() }
         val closestCentroids = clusters.withIndex().map { (i, cluster) -> cluster.minByOrNull { it.l2Distance(idealCentroids[i]) } ?: points.random() }
 
         if (centroids.zip(closestCentroids).all { (a, b) -> a === b }) {

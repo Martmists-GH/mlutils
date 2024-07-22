@@ -1,6 +1,5 @@
 package com.martmists.mlutils.compat.format
 
-import com.martmists.mlutils.compat.jvm.ofRows
 import com.martmists.ndarray.simd.F64Array
 import java.io.File
 

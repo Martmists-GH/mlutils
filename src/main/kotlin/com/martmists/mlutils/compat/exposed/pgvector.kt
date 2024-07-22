@@ -1,6 +1,5 @@
 package com.martmists.mlutils.compat.exposed
 
-import kotlinx.coroutines.selects.select
 import com.martmists.ndarray.simd.F64FlatArray
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Database
